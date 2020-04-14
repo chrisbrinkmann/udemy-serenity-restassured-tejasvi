@@ -19,12 +19,13 @@ public class FirstSerenityTest {
 
 	@Test
 	public void getAllStudents() {
-		SerenityRest.given()
+		SerenityRest
+			.given()
 			.when()
-			.get("/student/list")
+				.get("/student/list")
 			.then()
-			.log()
-			.all()
-			.statusCode(200);
+				.log()
+				.all()
+				.statusCode(200);
 	}
 }
