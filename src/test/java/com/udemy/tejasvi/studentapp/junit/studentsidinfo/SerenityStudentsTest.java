@@ -1,4 +1,4 @@
-package com.udemy.tejasvi.studentapp.junit;
+package com.udemy.tejasvi.studentapp.junit.studentsidinfo;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -11,7 +11,7 @@ import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Pending;
 
 @RunWith(SerenityRunner.class)
-public class FirstSerenityTest {
+public class SerenityStudentsTest {
 	
 	@BeforeClass
 	public static void init() {
