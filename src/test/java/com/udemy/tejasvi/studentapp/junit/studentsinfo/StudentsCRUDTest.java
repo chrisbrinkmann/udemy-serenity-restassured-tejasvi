@@ -14,6 +14,7 @@ import org.junit.runners.MethodSorters;
 
 import com.udemy.tejasvi.studentapp.cucumber.serenity.StudentSerenitySteps;
 import com.udemy.tejasvi.studentapp.testbase.TestBase;
+import com.udemy.tejasvi.studentapp.utils.ReuseableSpecifications;
 import com.udemy.tejasvi.studentapp.utils.Utils;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -42,7 +43,8 @@ public class StudentsCRUDTest extends TestBase {
 		courses.add("C++");
 
 		steps.createStudent(firstName, lastName, email, programme, courses)
-				.statusCode(201);
+				.statusCode(201)
+				.spec(ReuseableSpecifications.getGenericResponseSpec());
 	}
 
 	@Title("This test will verify a the student in the previous test was added")
@@ -83,6 +85,7 @@ public class StudentsCRUDTest extends TestBase {
 
 		// GET /{id} assert 404 not found for deleted student
 		steps.getStudentById((int)studentMapCache.get("id"))
-			.statusCode(404);
+			.statusCode(404)
+			.spec(ReuseableSpecifications.getGenericResponseSpec());
 	}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.udemy.tejasvi.studentapp.model.StudentClass;
+import com.udemy.tejasvi.studentapp.utils.ReuseableSpecifications;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
@@ -25,7 +26,8 @@ public class StudentSerenitySteps {
 		student.setProgramme(programme);
 
 		// POST /student create student & check status code
-		return SerenityRest.rest().given().contentType(ContentType.JSON).when()
+		return SerenityRest.rest().given()
+				.spec(ReuseableSpecifications.getGenericRequestSpec()).when()
 				.body(student).post().then(); // then() returns a
 												// ValidatableResponse
 	}
@@ -52,21 +54,20 @@ public class StudentSerenitySteps {
 
 		// PUT /{id} update student
 		return SerenityRest.rest().given().log().all()
-				.contentType(ContentType.JSON).when().body(student)
-				.put("/" + id).then().log().all().statusCode(200);
+				.spec(ReuseableSpecifications.getGenericRequestSpec()).when()
+				.body(student).put("/" + id).then().log().all().statusCode(200);
 	}
 
 	@Step("Delete the student with the studentID:{0}")
 	public void deleteStudent(int id) {
 		// DELETE /{id} delete student
-		SerenityRest.rest().given().when()
-				.delete("/" + id);
+		SerenityRest.rest().given().when().delete("/" + id);
 	}
-	
+
 	@Step("Get student with the ID{0}")
 	public ValidatableResponse getStudentById(int id) {
 		// GET /{id} assert 404 not found for deleted student
-			return	SerenityRest.rest().given().when()
-						.get("/" + id).then().log().all();
+		return SerenityRest.rest().given().when().get("/" + id).then().log()
+				.all();
 	}
 }
