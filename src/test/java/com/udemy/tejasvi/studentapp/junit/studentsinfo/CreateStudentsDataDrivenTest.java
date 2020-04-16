@@ -12,8 +12,10 @@ import com.udemy.tejasvi.studentapp.testbase.TestBase;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Title;
+import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 
+@Concurrent
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("testdata/studentinfo.csv")
 public class CreateStudentsDataDrivenTest extends TestBase {
