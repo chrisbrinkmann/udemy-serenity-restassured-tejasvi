@@ -10,9 +10,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<serenity.version>2.2.1</serenity.version>
-		<serenity.maven.version>2.2.0</serenity.maven.version>
-		<serenity.cucumber.version>1.9.51</serenity.cucumber.version>
+		<serenity.version>1.9.19</serenity.version>
+		<serenity.maven.version>1.9.19</serenity.maven.version>
+		<serenity.cucumber.version>1.9.7</serenity.cucumber.version>
 		<java.version>1.8</java.version>
 		<compiler.version>3.7.0</compiler.version>
 		<junit.version>4.12</junit.version>
@@ -41,6 +41,31 @@
 			<groupId>net.serenity-bdd</groupId>
 			<artifactId>serenity-cucumber</artifactId>
 			<version>${serenity.cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm</artifactId>
+			<version>1.2.5</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -80,7 +105,9 @@
 			<version>1.7.0</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -92,7 +119,7 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.18</version>
@@ -100,10 +127,9 @@
 					<includes>
 						<include>**/*Test*.java</include>
 					</includes>
-					<forkCount>4</forkCount>
+				<!--	<forkCount>4</forkCount>
 					<reuseForks>true</reuseForks>
-				<!--<parallel>methods</parallel>
-					<threadCount>10</threadCount> -->
+					<parallel>methods</parallel> <threadCount>10</threadCount> -->
 					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
 				</configuration>
 				<executions>
@@ -115,7 +141,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -125,7 +151,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>net.serenity-bdd.maven.plugins</groupId>
 				<artifactId>serenity-maven-plugin</artifactId>

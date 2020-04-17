@@ -39,6 +39,12 @@ public class StudentSerenitySteps {
 				.path("find{it.firstName=='" + firstName + "'}");
 	}
 
+	@Step("Getting the student object with email: {0}")
+	public HashMap<String, Object> getStudentByEmail(String email) {
+		return SerenityRest.rest().given().when().get("/list").then().extract()
+				.path("find{it.email=='" + email + "'}");
+	}
+
 	@Step("Updating student with studentID: {0} firstName: {1}, lastName:{2}, email:{3}, programme:{4}, courses:{5}")
 	public ValidatableResponse updateStudent(int id, String firstName,
 			String lastName, String email, String programme,
